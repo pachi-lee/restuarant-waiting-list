@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -60,6 +61,14 @@ app.post('/api/waitlist/:id/seat', (req, res) => {
 
   const seated = waitingList.splice(index, 1)[0];
   res.json({ message: 'Customer seated', customer: seated });
+});
+
+// Serve static files from React build in production
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Handle React routing - serve index.html for any non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 app.listen(PORT, () => {

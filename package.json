@@ -1,0 +1,14 @@
+{
+  "name": "restaurant-waitlist",
+  "version": "1.0.0",
+  "description": "Restaurant waiting list app",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "build": "cd client && npm install && npm run build",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
